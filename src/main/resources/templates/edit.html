@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+<a href="/users">All people</a>
+
+<form th:method="PATCH" th:action="@{/users/{id}(id = ${user.getId()})}" th:object="${user}">
+    <input type="hidden" th:field="*{id}">
+
+  <label for="name">Enter name:</label>
+  <input type="text" th:field="*{name}" id="name"/>
+
+  <label for="age">Enter age:</label>
+  <input type="number" th:field="*{age}" id="age"/>
+
+  <select th:object="${user}" th:field="*{gender}">
+    <option th:each="gender : ${T(com.example.spring_hiber.model.Gender).values()}"
+            th:value="${gender}" th:text="${gender}"></option>
+  </select>
+
+  <input type="submit" value="Update"/>
+</form>
+</body>
+</html>
